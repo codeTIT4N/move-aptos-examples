@@ -6,9 +6,10 @@ license = "MIT"
 
 [addresses]
 publisher = "0xe6d4c56594382cd61f530de46d353a32db17226b4ee9a1ae9ba19df9485bcbcb"
-aptos_framework = "_"
-aptos_std = "_"
-aptos_token = "_"
+std = "0x1"
+aptos_framework = "0x1"
+aptos_std = "0x1"
+aptos_token = "0x3"
 
 [dev-addresses]
 
@@ -16,5 +17,9 @@ aptos_token = "_"
 git = "https://github.com/aptos-labs/aptos-core.git"
 rev = "mainnet"
 subdir = "aptos-move/framework/aptos-framework"
+
+[dependencies]
+AptosToken = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-token", rev = "mainnet" }
+AptosStdlib = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-stdlib", rev = "mainnet" }
 
 [dev-dependencies]
