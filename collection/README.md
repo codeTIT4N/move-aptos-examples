@@ -2,7 +2,7 @@
 
 > Make sure aptos cli is installed
 
-### Compile move files
+### Compile move modules
 
 ```bash
 aptos move compile

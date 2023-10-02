@@ -5,7 +5,7 @@ authors = ["Lokesh Kumar <https//github.com/codeTIT4N>"]
 license = "MIT"
 
 [addresses]
-publisher = "0x500"
+publisher = "0xd044cad4fbf9ed6870db3ce00cccc7b93f0679a8a9b199b3f2834a61686dba56"
 std = "0x1"
 aptos_framework = "0x1"
 aptos_std = "0x1"
