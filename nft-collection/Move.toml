@@ -1,0 +1,25 @@
+[package]
+name = "nft-collection"
+version = "1.0.0"
+authors = []
+
+[addresses]
+publisher = "0xc0ffee"
+admin_addr = "0xc0ffee"
+std = "0x1"
+aptos_framework = "0x1"
+aptos_std = "0x1"
+aptos_token = "0x3"
+
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+[dependencies]
+AptosToken = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-token", rev = "mainnet" }
+AptosStdlib = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-stdlib", rev = "mainnet" }
+
+[dev-dependencies]
