@@ -1,5 +1,7 @@
 # nft-collection
 
+This NFT collection is kind of like Ethereum's [ERC1155](https://eips.ethereum.org/EIPS/eip-1155) with a single token Id and multiple copies.
+
 ### Compile
 
 ```bash
