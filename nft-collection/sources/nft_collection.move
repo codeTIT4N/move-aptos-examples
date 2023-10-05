@@ -10,7 +10,6 @@ module publisher::NFTCollection {
     use aptos_framework::account::SignerCapability;
     use aptos_framework::resource_account;
     use aptos_framework::account;
-    //use aptos_framework::timestamp;
 
     struct NFTData has key {
         // Storing the signer capability here, so the module can programmatically sign for transactions
@@ -18,28 +17,30 @@ module publisher::NFTCollection {
         token_data_id: TokenDataId,
     }
 
+    /// Only admin can call this function
     const ENOT_AUTHORIZED: u64 = 1;
 
     // constructor
     fun init_module(resource_signer: &signer) {
-        let collection_name = string::utf8(b"The colors collection");
-        let description = string::utf8(b"Colorful collection discription");
-        let collection_uri = string::utf8(b"https://ipfs.io/ipfs/QmbuzAWdhpBq4qcAN6JD2k5ce7uKomZynQBuELJ8o8c7ZW");
-        let token_name = string::utf8(b"Colors NFT");
-        let token_description = string::utf8(b"Colors create beauty");
-        let token_uri = string::utf8(b"https://ipfs.io/ipfs/QmZ5cimfzWZ754CYBaWd7UgRcfS9vGKztgpm96W26Qem6L/testNFTs/1.json");
-        let maximum_supply = 1;
+    let collection_name= string::utf8(b"Test4");
+        let description = string::utf8(b"Test4");
+        let collection_uri = string::utf8(b"");
+        let token_name = string::utf8(b"Test4");
+        let token_description = string::utf8(b"Test4");
+        let token_uri = string::utf8(b"https://ipfs.io/ipfs/QmZ5cimfzWZ754CYBaWd7UgRcfS9vGKztgpm96W26Qem6L/testNFTs/4.json");
+        let maximum_supply_collection = 1; // not modifiable
+        let maximum_supply_token = 10; // modifiable
 
-        let mutate_setting = vector<bool>[ false, false, true ];
+        let mutate_setting = vector<bool>[ false, false, false ];
 
-        token::create_collection(resource_signer, collection_name, description, collection_uri, maximum_supply, mutate_setting);
+        token::create_collection(resource_signer, collection_name, description, collection_uri, maximum_supply_collection, mutate_setting);
 
         let token_data_id = token::create_tokendata(
             resource_signer,
             collection_name,
             token_name,
             token_description,
-            0,
+            maximum_supply_token,
             token_uri,
             signer::address_of(resource_signer),
             1,
@@ -53,11 +54,11 @@ module publisher::NFTCollection {
         );
 
         let resource_signer_cap = resource_account::retrieve_resource_account_cap(resource_signer, @source_addr);
-
+        
         move_to(resource_signer, NFTData {
             signer_cap: resource_signer_cap,
-            token_data_id
-        });
+            token_data_id,
+        });    
     }
 
     // update the token uri
@@ -95,10 +96,40 @@ module publisher::NFTCollection {
             collection,
             name,
             0,
-            1,
+            amount,
             vector::empty<String>(),
             vector::empty<vector<u8>>(),
             vector::empty<String>(),
         );
     }
+
+    # [view]
+    public fun get_token_uri(): String acquires NFTData {
+        let nft_data = borrow_global<NFTData>(@publisher);
+        let token_data_id = nft_data.token_data_id;
+        let (creator_address,_,_) = token::get_token_data_id_fields(&token_data_id);
+        token::get_tokendata_uri(creator_address, token_data_id)
+    }
+
+    # [view]
+    public fun get_maximum_supply_tokens(): u64 acquires NFTData {
+        let nft_data = borrow_global<NFTData>(@publisher);
+        let token_data_id = nft_data.token_data_id;
+        token::get_tokendata_maximum(token_data_id)
+    }
+
+    // acts like token supply
+    # [view]
+    public fun get_largest_property_version(): u64 acquires NFTData {
+        let nft_data = borrow_global<NFTData>(@publisher);
+        let token_data_id = nft_data.token_data_id;
+        let (creator_address,_,_) = token::get_token_data_id_fields(&token_data_id);
+        token::get_tokendata_largest_property_version(creator_address, token_data_id)
+    }
+
+    # [view]
+    public fun get_admin_address(): address {
+        @admin_addr
+    }
+
 }

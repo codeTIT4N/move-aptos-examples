@@ -4,7 +4,6 @@ version = "1.0.0"
 authors = []
 
 [addresses]
-admin_addr = "0x81fce6c9ee4663de822d505c90bcd918a1d09b541fd9ae6a39ccd5184f9254ef"
 std = "0x1"
 aptos_framework = "0x1"
 aptos_std = "0x1"
