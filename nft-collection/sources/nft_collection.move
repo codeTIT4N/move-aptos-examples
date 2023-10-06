@@ -22,14 +22,14 @@ module publisher::NFTCollection {
 
     // constructor
     fun init_module(resource_signer: &signer) {
-    let collection_name= string::utf8(b"Test4");
-        let description = string::utf8(b"Test4");
+        let collection_name= string::utf8(b"Test Collection");
+        let description = string::utf8(b"Test Collection Description");
         let collection_uri = string::utf8(b"");
-        let token_name = string::utf8(b"Test4");
-        let token_description = string::utf8(b"Test4");
-        let token_uri = string::utf8(b"https://ipfs.io/ipfs/QmZ5cimfzWZ754CYBaWd7UgRcfS9vGKztgpm96W26Qem6L/testNFTs/4.json");
+        let token_name = string::utf8(b"Test NFT");
+        let token_description = string::utf8(b"Test NFT Description");
+        let token_uri = string::utf8(b"https://ipfs.io/ipfs/Qmb4DyYNJhtDjVGU5QcwcFNVXBzqdZFqCT4smamYMh2pQj");
         let maximum_supply_collection = 1; // not modifiable
-        let maximum_supply_token = 10; // modifiable
+        let maximum_supply_token = 20; // modifiable
 
         let mutate_setting = vector<bool>[ false, false, false ];
 

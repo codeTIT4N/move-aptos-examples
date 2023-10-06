@@ -5,7 +5,7 @@ module publisher::nft_collection_tests{
     use std::unit_test;
     use std::vector;
 
-    //use publisher::NFTCollection;
+    use publisher::NFTCollection;
 
     fun get_account(): signer {
        vector::pop_back(&mut unit_test::create_signers_for_testing(1))
