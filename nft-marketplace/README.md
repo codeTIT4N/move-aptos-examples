@@ -7,7 +7,3 @@
 ```bash
 aptos move compile
 ```
-
-### Run tests
-
-> TODO
