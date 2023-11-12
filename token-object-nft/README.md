@@ -1,4 +1,4 @@
 # token-object-nft
 
-> **Warning!**
+>  **Warning**
 > Incomplete!
