@@ -1,0 +1,16 @@
+[package]
+name = "token-object-nft-example"
+version = "1.0.0"
+authors = ["codeTIT4N <https://github.com/codeTIT4N>"]
+
+[addresses]
+admin_addr = "0x30f3748dce3b9604b23ca02f0d7cc50d86acf845c97b773758b4a892ddbced51"
+
+[dev-addresses]
+
+[dependencies]
+AptosStdlib = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-stdlib", rev = "devnet" }
+AptosFramework = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-framework", rev = "devnet" }
+AptosTokenObjects = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-token-objects", rev = "devnet" }
+
+[dev-dependencies]
